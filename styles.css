@@ -1,0 +1,17 @@
+body {
+    background-color: blue;
+    overflow: hidden; /* this will center the object */
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+}
+
+.box {
+    display: grid;
+    background-color: black;
+    padding: 10px;
+    grid-column: repeat(1fr, 3);
+}
