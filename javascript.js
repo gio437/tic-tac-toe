@@ -13,18 +13,18 @@ const displayController = (() => {
 const createGrid = (() => {
     const boxCreate = () => {
         let boxParent = document.querySelector(".platform");
-        let box = document.createElement("div");
+        let box = document.createElement("button");
         box.classList.add("box");
         boxParent.appendChild(box);
     }
-    return () => {
-        let boxCount = 10;
-        for (let i = 0; i < boxCount; i++) {
-            boxCreate[i];
+    return {
+        publicCount: function() {
+            let boxCount = 9;
+            for (let i = 0; i < boxCount; i++) {
+                boxCreate();
+            }
         }
     }
 })();
 
-const create = createGrid();
-
-create();
+createGrid.publicCount();
