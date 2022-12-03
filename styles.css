@@ -21,3 +21,8 @@ body {
     height: 10rem;
     width: 12rem;
 }
+
+.box:hover {
+    cursor: pointer;
+    opacity: 0.5;
+}
