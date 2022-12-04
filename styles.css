@@ -1,5 +1,5 @@
 body {
-    background-color: blue;
+    background-color: rgba(97, 155, 221, 0.855);
     overflow: hidden; /* this will center the object */
     position: absolute;
     width: 100%;
@@ -16,9 +16,11 @@ body {
 
 .box {
     background-color: black;
+    color: white;
+    font-size: 100px;
     border-style: solid;
     border-color: white;
-    height: 10rem;
+    height: 12rem;
     width: 12rem;
 }
 
