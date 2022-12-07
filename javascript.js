@@ -25,10 +25,12 @@ const gameBoard = (() => {
 
 gameBoard.publicCount();
 
+let boxCount = [];
+
 function markXSpot(e) {
-    let boxCount = ["X", "X"];
     let num;
     let dataVal;
+    let xVal = 0;
     console.log(e);
 
       if (e.target.classList.contains("box")) {
@@ -42,23 +44,32 @@ function markXSpot(e) {
 
       let boxEl = document.querySelectorAll(".box");
         //for (let j = 0; j < boxEl.length; j++) {
-                if (num == boxCount[dataVal]) {
+                if (boxCount[dataVal] == "X" && xVal == 0 || boxCount[dataVal] == "O" && xVal == 0) {
+                    console.log(boxCount);
+                    return;
+                }
+                else { 
+                    console.log("inputted X");
+                    boxCount[dataVal] = "X";
+                    boxEl[dataVal].id = "X";
+                    xVal = 1;
+                    markOSpot();
+                }
+
+                console.log(boxCount);
+
+            function markOSpot() {
+                if (boxCount[dataVal] == "X" && xVal == 1|| boxCount[dataVal] == "O" && xVal == 1) {
                     console.log(boxCount);
                     return;
                 }
                 else {
-                    console.log("inputted");
-                    boxCount.push("X");
-                    boxEl[dataVal].id = "X";
-                    console.log(boxCount);
-                    markOSpot();
+                    console.log("inputted O");
+                    boxCount[dataVal] = "O";
+                    boxEl[dataVal].id = "O";
+                    xVal = 0;
                 }
-        //}
-                    //return {boxCount}
-
-function markOSpot() {
-    console.log('Hello');
-}
+            }
 }
 
 const players = (name) => {
