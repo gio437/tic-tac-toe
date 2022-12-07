@@ -7,7 +7,7 @@ const gameBoard = (() => {
                 let boxParent = document.querySelector(".platform");
                 let box = document.createElement("button");
                 box.classList.add("box");
-                box.id = boxTag;
+                box.setAttribute("data-set", boxTag);
                 boxTag++;
                 //box.textContent = boxCount;
                 boxParent.appendChild(box);
@@ -18,36 +18,48 @@ const gameBoard = (() => {
                 boxCreate();
             }
                 let createMark = document.querySelector(".platform");
-                createMark.addEventListener("click", () => {
-                    markSpot();
-                })
+                createMark.addEventListener("click", markXSpot); 
             }
         }
 })();
 
 gameBoard.publicCount();
 
-const markSpot = (e) => {
-    let boxCount = ["X", "O","X", "O","X", "O","X", "O"];
-
-    const markX = () => {
+function markXSpot(e) {
+    let boxCount = ["X", "X"];
+    let num;
+    let dataVal;
+    console.log(e);
 
       if (e.target.classList.contains("box")) {
-          num = parseInt(e.target.parentElement.id);
+          num = (e.target.id);
+          dataVal = parseInt(e.target.getAttribute("data-set"));
           console.log(num);
+          console.log(dataVal);
       }
 
-      for (let j = 0; j < boxCount.length; j++) {
-            if (boxCount == num) {
+      console.log(boxCount[dataVal]);
+
+      let boxEl = document.querySelectorAll(".box");
+        //for (let j = 0; j < boxEl.length; j++) {
+                if (num == boxCount[dataVal]) {
+                    console.log(boxCount);
                     return;
-            }
-            else {
-                boxCount[num] = "X";
-            }
-        }
-    }
-        return {markX}
-};
+                }
+                else {
+                    console.log("inputted");
+                    boxCount.push("X");
+                    boxEl[dataVal].id = "X";
+                    console.log(boxCount);
+                    markOSpot();
+                }
+        //}
+                    //return {boxCount}
+
+function markOSpot() {
+    console.log('Hello');
+}
+}
 
 const players = (name) => {
     
