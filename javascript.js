@@ -30,16 +30,6 @@ function markXSpot(e) {
     let num;
     let dataVal;
 
-    deleteResult();
-
-    function deleteResult() {
-        if (resultVal == 1) {
-            let removeButton1 = document.querySelector("h2");
-            removeButton1.remove();
-            resultVal = 0;
-        }
-      }
-
       if (e.target.classList.contains("box")) {
           num = (e.target.id);
           dataVal = parseInt(e.target.getAttribute("data-set"));
@@ -188,7 +178,6 @@ function decideWinner(player1, player2) {
     }
 }
 
-let resultVal = 0;
 let endGame = 0;
 
 let playerList = [];
@@ -198,7 +187,6 @@ function players() {
     let winHeader1 = document.createElement("h2");
     winHeader1.textContent = playerList[0] + " wins!";
     winnerLine.appendChild(winHeader1);
-    resultVal++;
     playerList = [];
 };
 
@@ -207,7 +195,6 @@ function showSecondWinner() {
     let winHeader1 = document.createElement("h2");
     winHeader1.textContent = playerList[1] + " wins!";
     winnerLine.appendChild(winHeader1);
-    resultVal++;
     playerList = [];
 }
 
@@ -233,6 +220,9 @@ const displayController = (() => {
 })();
 
 function restartGame() {
+    let box = document.querySelector(".platform");
+    box.removeEventListener("click", markXSpot);
+
     let restart = document.querySelector(".restart");
     let restartBtn = document.createElement("button");
     restartBtn.classList.add("restartBtn");
@@ -241,6 +231,11 @@ function restartGame() {
 
      restartBtn.addEventListener("click", () => {
          boxCount = [];
-        
+         box.addEventListener("click", markXSpot);
+         let removeResult = document.querySelector("h2");
+
+         restartBtn.remove();
+         removeResult.remove();
+         //restartBtn.removeEventListener("click");
      })
 }
