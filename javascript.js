@@ -38,7 +38,7 @@ function markXSpot(e) {
             removeButton1.remove();
             resultVal = 0;
         }
-    }
+      }
 
       if (e.target.classList.contains("box")) {
           num = (e.target.id);
@@ -92,7 +92,7 @@ function decideWinner(player1, player2) {
     if (boxCount[0] && boxCount[1] && boxCount[2] == "X") {
         console.log("player1 wins!");
         players(firstPlayer);
-        boxCount = [];
+        restartGame();
         xVal = 0;
         endGame = 1;
     }
@@ -104,67 +104,67 @@ function decideWinner(player1, player2) {
     }
     else if (boxCount[2] == "X" && boxCount[4] == "X" && boxCount[6] == "X") {
         players(player1);
-        boxCount = [];
+        restartGame();
         xVal = 0;
         endGame = 1;
     }
     else if (boxCount[3] == "X" && boxCount[4] == "X" && boxCount[5] == "X") {
         players(player1);
-        boxCount = [];
+        restartGame();
         xVal = 0;
         endGame = 1;
     }
     else if (boxCount[6] == "X" && boxCount[7] == "X" && boxCount[8] == "X") {
         players(player1);
-        boxCount = [];
+        restartGame();
         xVal = 0;
         endGame = 1;
     }
     else if (boxCount[1] == "X" && boxCount[4] == "X" && boxCount[7] == "X") {
         players(player1);
-        boxCount = [];
+        restartGame();
         xVal = 0;
         endGame = 1;
     }
     else if (boxCount[2] == "X" && boxCount[5] == "X" && boxCount[8] == "X") {
         players(player1);
-        boxCount = [];
+        restartGame();
         xVal = 0;
         endGame = 1;
     }
     else if (boxCount[0] == "X" && boxCount[4] == "X" && boxCount[8] == "X") {
         players(player1);
-        boxCount = [];
+        restartGame();
         xVal = 0;
         endGame = 1;
     }
     else if (boxCount[0] == "O" &&  boxCount[1] == "O" && boxCount[2] == "O") {
         showSecondWinner(player2);
-        boxCount = [];
+        restartGame();
         xVal = 0;
         endGame = 2;
     }
     else if (boxCount[0] == "O" && boxCount[3] == "O" && boxCount[6] == "O") {
         showSecondWinner(player2);
-        boxCount = [];
+        restartGame();
         xVal = 0;
         endGame = 2;
     }
     else if (boxCount[2] == "O" && boxCount[4] == "O" && boxCount[6] == "O") {
         showSecondWinner(player2);
-        boxCount = [];
+        restartGame();
         xVal = 0;
         endGame = 2;
     }
     else if (boxCount[3]  == "O" && boxCount[4] == "O" && boxCount[5] == "O") {
         showSecondWinner(player2);
-        boxCount = [];
+        restartGame();
         xVal = 0;
         endGame = 2;
     }
     else if (boxCount[6]  == "O" && boxCount[7] == "O" && boxCount[8] == "O") {
         showSecondWinner(player2);
-        boxCount = [];
+        restartGame();
         xVal = 0;
         endGame = 2;
     }
@@ -176,13 +176,13 @@ function decideWinner(player1, player2) {
     }
     else if (boxCount[2] == "O" && boxCount[5] == "O" && boxCount[8] == "O") {
         showSecondWinner(player2);
-        boxCount = [];
+        restartGame();
         xVal = 0;
         endGame = 2;
     }
     else if (boxCount[0] == "O" && boxCount[4] == "O" && boxCount[8] == "O") {
         showSecondWinner(player2);
-        boxCount = [];
+        restartGame();
         xVal = 0;
         endGame = 2;
     }
@@ -231,3 +231,16 @@ const displayController = (() => {
         }
     })
 })();
+
+function restartGame() {
+    let restart = document.querySelector(".restart");
+    let restartBtn = document.createElement("button");
+    restartBtn.classList.add("restartBtn");
+    restartBtn.textContent = "Restart";
+    restart.appendChild(restartBtn);
+
+     restartBtn.addEventListener("click", () => {
+         boxCount = [];
+        
+     })
+}
