@@ -89,113 +89,145 @@ function markXSpot(e) {
 }
 
 function decideWinner(player1, player2) {
-    this.player1 = player1;
-    this.player2 = player2;
-
     if (boxCount[0] && boxCount[1] && boxCount[2] == "X") {
         console.log("player1 wins!");
+        players(firstPlayer);
+        boxCount = [];
+        xVal = 0;
+        endGame = 1;
+    }
+    else if (boxCount[0] == "X" && boxCount[3] == "X" && boxCount[6] == "X") {
         players(player1);
         boxCount = [];
         xVal = 0;
+        endGame = 1;
     }
-    else if (boxCount[0] && boxCount[3] && boxCount[6] == "X") {
+    else if (boxCount[2] == "X" && boxCount[4] == "X" && boxCount[6] == "X") {
         players(player1);
         boxCount = [];
         xVal = 0;
+        endGame = 1;
     }
-    else if (boxCount[2] && boxCount[4] && boxCount[6] == "X") {
+    else if (boxCount[3] == "X" && boxCount[4] == "X" && boxCount[5] == "X") {
         players(player1);
         boxCount = [];
         xVal = 0;
+        endGame = 1;
     }
-    else if (boxCount[3] && boxCount[4] && boxCount[5] == "X") {
+    else if (boxCount[6] == "X" && boxCount[7] == "X" && boxCount[8] == "X") {
         players(player1);
         boxCount = [];
         xVal = 0;
+        endGame = 1;
     }
-    else if (boxCount[6] && boxCount[7] && boxCount[8] == "X") {
+    else if (boxCount[1] == "X" && boxCount[4] == "X" && boxCount[7] == "X") {
         players(player1);
         boxCount = [];
         xVal = 0;
+        endGame = 1;
     }
-    else if (boxCount[1] && boxCount[4] && boxCount[7] == "X") {
+    else if (boxCount[2] == "X" && boxCount[5] == "X" && boxCount[8] == "X") {
         players(player1);
         boxCount = [];
         xVal = 0;
+        endGame = 1;
     }
-    else if (boxCount[2] && boxCount[5] && boxCount[8] == "X") {
+    else if (boxCount[0] == "X" && boxCount[4] == "X" && boxCount[8] == "X") {
         players(player1);
         boxCount = [];
         xVal = 0;
+        endGame = 1;
     }
-    else if (boxCount[0] && boxCount[4] && boxCount[8] == "X") {
-        players(player1);
+    else if (boxCount[0] == "O" &&  boxCount[1] == "O" && boxCount[2] == "O") {
+        showSecondWinner(player2);
         boxCount = [];
         xVal = 0;
+        endGame = 2;
     }
-    else if (boxCount[0] && boxCount[1] && boxCount[2] == "O") {
-        players(player2);
+    else if (boxCount[0] == "O" && boxCount[3] == "O" && boxCount[6] == "O") {
+        showSecondWinner(player2);
         boxCount = [];
         xVal = 0;
+        endGame = 2;
     }
-    else if (boxCount[0] && boxCount[3] && boxCount[6] == "O") {
-        players(player2);
+    else if (boxCount[2] == "O" && boxCount[4] == "O" && boxCount[6] == "O") {
+        showSecondWinner(player2);
         boxCount = [];
         xVal = 0;
+        endGame = 2;
     }
-    else if (boxCount[2] && boxCount[4] && boxCount[6] == "O") {
-        players(player2);
+    else if (boxCount[3]  == "O" && boxCount[4] == "O" && boxCount[5] == "O") {
+        showSecondWinner(player2);
         boxCount = [];
         xVal = 0;
+        endGame = 2;
     }
-    else if (boxCount[3] && boxCount[4] && boxCount[5] == "O") {
-        players(player2);
+    else if (boxCount[6]  == "O" && boxCount[7] == "O" && boxCount[8] == "O") {
+        showSecondWinner(player2);
         boxCount = [];
         xVal = 0;
+        endGame = 2;
     }
-    else if (boxCount[6] && boxCount[7] && boxCount[8] == "O") {
-        players(player2);
+    else if (boxCount[1] == "O" && boxCount[4] == "O" && boxCount[7] == "O") {
+        showSecondWinner(player2);
         boxCount = [];
         xVal = 0;
+        endGame = 2;
     }
-    else if (boxCount[1] && boxCount[4] && boxCount[7] == "O") {
-        players(player2);
+    else if (boxCount[2] == "O" && boxCount[5] == "O" && boxCount[8] == "O") {
+        showSecondWinner(player2);
         boxCount = [];
         xVal = 0;
+        endGame = 2;
     }
-    else if (boxCount[2] && boxCount[5] && boxCount[8] == "O") {
-        players(player2);
+    else if (boxCount[0] == "O" && boxCount[4] == "O" && boxCount[8] == "O") {
+        showSecondWinner(player2);
         boxCount = [];
         xVal = 0;
-    }
-    else if (boxCount[0] && boxCount[4] && boxCount[8] == "O") {
-        players(player2);
-        boxCount = [];
-        xVal = 0;
+        endGame = 2;
     }
 }
 
 let resultVal = 0;
+let endGame = 0;
 
-const players = (player1, player2) => {
+let playerList = [];
+
+function players() {
     let winnerLine = document.querySelector(".result");
-    let winHeader = document.createElement("h2");
-    winHeader.textContent = player1 + " wins!";
-    winHeader.textContent = player2 + " wins!";
-    winnerLine.appendChild(winHeader);
+    let winHeader1 = document.createElement("h2");
+    winHeader1.textContent = playerList[0] + " wins!";
+    winnerLine.appendChild(winHeader1);
     resultVal++;
+    playerList = [];
 };
+
+function showSecondWinner() {
+    let winnerLine = document.querySelector(".result");
+    let winHeader1 = document.createElement("h2");
+    winHeader1.textContent = playerList[1] + " wins!";
+    winnerLine.appendChild(winHeader1);
+    resultVal++;
+    playerList = [];
+}
 
 const displayController = (() => {
     let getPlayer1 = document.querySelector(".btn1");
     getPlayer1.addEventListener("click", () => {
         let player1 = window.prompt("enter player 1");
-        decideWinner(player1);
+        playerList.splice(0, 0, player1);
+        while (endGame == 1) {
+            players();
+            endGame = 0;
+        }
     })
-    
     let getPlayer2 = document.querySelector(".btn2");
     getPlayer2.addEventListener("click", () => {
         let player2 = window.prompt("enter player 2");
-        decideWinner(player2);
+        playerList.splice(1, 0, player2);
+        while (endGame == 2) {
+            showSecondWinner();
+            endGame = 0;
+        }
     })
 })();
