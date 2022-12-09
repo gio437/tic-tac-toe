@@ -3,14 +3,12 @@ const gameBoard = (() => {
     let boxTag = 0;
 
     const boxCreate = () => {
-        //boxCount.map((boxCount) => {
-                let boxParent = document.querySelector(".platform");
-                let box = document.createElement("button");
-                box.classList.add("box");
-                box.setAttribute("data-set", boxTag);
-                boxTag++;
-                //box.textContent = boxCount;
-                boxParent.appendChild(box);
+            let boxParent = document.querySelector(".platform");
+            let box = document.createElement("button");
+            box.classList.add("box");
+            box.setAttribute("data-set", boxTag);
+            boxTag++;
+            boxParent.appendChild(box);
         }
     return {
         publicCount: function() {
@@ -47,8 +45,8 @@ function markXSpot(e) {
           dataVal = parseInt(e.target.getAttribute("data-set"));
       }
 
-      let boxEl = document.querySelectorAll(".box");
-        //for (let j = 0; j < boxEl.length; j++) {
+      let boxEl = document.querySelectorAll(".box"); //don't change
+      let eraseBox = document.querySelectorAll(`.box[data-id="${dataVal}"]`);
             if (boxCount[dataVal] == "X" || boxCount[dataVal] == "O" || xVal == 1) {
                 console.log(boxCount);
                 markOSpot();
@@ -61,9 +59,8 @@ function markXSpot(e) {
                 xVal = 1;
                 markOSpot();
 
-                let removeBox = document.querySelectorAll(".box");
-                for (let i = 0; i < removeBox.length; i++) {
-                    //removeBox[dataVal].remove();
+                for (let i = 0; i < eraseBox.length; i++) {
+                    eraseBox[dataVal].remove();
                 }
 
                 decideWinner();
@@ -92,6 +89,8 @@ function markXSpot(e) {
 }
 
 function decideWinner(player1, player2) {
+    this.player1 = player1;
+    this.player2 = player2;
 
     if (boxCount[0] && boxCount[1] && boxCount[2] == "X") {
         console.log("player1 wins!");
@@ -176,31 +175,27 @@ function decideWinner(player1, player2) {
     }
 }
 
-let getPlayer1 = document.querySelector(".btn1");
-getPlayer1.addEventListener("click", () => {
-    let player1 = window.prompt("enter player 1");
-    decideWinner(player1);
-})
-
-let getPlayer2 = document.querySelector(".btn2");
-getPlayer2.addEventListener("click", () => {
-    let player2 = window.prompt("enter player 2");
-    decideWinner(player2);
-})
-
 let resultVal = 0;
 
 const players = (player1, player2) => {
     let winnerLine = document.querySelector(".result");
     let winHeader = document.createElement("h2");
-    winHeader.textContent = player1 + "wins!";
-    winHeader.textContent = player2 + "wins!";
+    winHeader.textContent = player1 + " wins!";
+    winHeader.textContent = player2 + " wins!";
     winnerLine.appendChild(winHeader);
     resultVal++;
 };
 
-//players();
-
 const displayController = (() => {
-
+    let getPlayer1 = document.querySelector(".btn1");
+    getPlayer1.addEventListener("click", () => {
+        let player1 = window.prompt("enter player 1");
+        decideWinner(player1);
+    })
+    
+    let getPlayer2 = document.querySelector(".btn2");
+    getPlayer2.addEventListener("click", () => {
+        let player2 = window.prompt("enter player 2");
+        decideWinner(player2);
+    })
 })();
