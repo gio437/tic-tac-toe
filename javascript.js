@@ -219,7 +219,7 @@ const displayController = () => {
     let getPlayer1 = document.querySelector(".btn1");
     getPlayer1.addEventListener("click", handler1 = () => {
         let player1 = window.prompt("enter player 1");
-        playerList.splice(0, 0, player1);
+        playerList[0] = player1;
         while (endGame == 1) {
             players();
             endGame = 0;
@@ -228,7 +228,7 @@ const displayController = () => {
     let getPlayer2 = document.querySelector(".btn2");
     getPlayer2.addEventListener("click", handler2 = () => {
         let player2 = window.prompt("enter player 2");
-        playerList.splice(1, 0, player2);
+        playerList[1] = player2;
         while (endGame == 2) {
             showSecondWinner();
             endGame = 0;
