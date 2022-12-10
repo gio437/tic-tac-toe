@@ -28,8 +28,8 @@ let xVal = 0;
 let moveCount = 0;
 
 function markXSpot(e) {
-    let dataVal;
     let num;
+    let dataVal;
 
       if (e.target.classList.contains("box")) {
           num = (e.target.id);
@@ -59,7 +59,7 @@ function markXSpot(e) {
                 newBox.textContent = "X";
                 newBox.id = "X";
                 newBox.setAttribute("data-set", dataVal);
-                grid.appendChild(newBox);
+                grid.insertBefore(newBox, grid.children[dataVal]);
 
                 decideWinner();
             }
@@ -84,7 +84,7 @@ function markXSpot(e) {
                 newBox.textContent = "O";
                 newBox.id = "O";
                 newBox.setAttribute("data-set", dataVal);
-                grid.appendChild(newBox);
+                grid.insertBefore(newBox, grid.children[dataVal]);
 
                 decideWinner();
             }
@@ -97,7 +97,7 @@ function decideWinner(player1, player2) {
     if (moveCount == 9) {
         restartGame();
     }
-    else if (boxCount[0] && boxCount[1] && boxCount[2] == "X") {
+    else if (boxCount[0] == "X" && boxCount[1] == "X" && boxCount[2] == "X") {
         console.log("player1 wins!");
         players(player1);
         restartGame();
@@ -197,7 +197,6 @@ function decideWinner(player1, player2) {
 }
 
 let endGame = 0;
-
 let playerList = [];
 
 function players() {
@@ -237,9 +236,7 @@ const displayController = () => {
     })
 }
 
-
-    displayController();
-
+displayController();
 
 function restartGame() {
     let box = document.querySelector(".platform");
@@ -263,9 +260,12 @@ function restartGame() {
          moveCount = 0;
          box.addEventListener("click", markXSpot);
          let removeResult = document.querySelector("h2");
+         console.log(removeResult);
 
          restartBtn.remove();
-         removeResult.remove();
+         if (removeResult != null) {
+                removeResult.remove();
+         }
          //restartBtn.removeEventListener("click");
 
          const grid = document.querySelectorAll(".box");
