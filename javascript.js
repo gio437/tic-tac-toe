@@ -57,7 +57,7 @@ function markXSpot(e) {
                 let newBox = document.createElement("button");
                 newBox.classList.add("box");
                 newBox.textContent = "X";
-                newBox.id = num;
+                newBox.id = "X";
                 newBox.setAttribute("data-set", dataVal);
                 grid.appendChild(newBox);
 
@@ -82,7 +82,7 @@ function markXSpot(e) {
                 let newBox = document.createElement("button");
                 newBox.classList.add("box");
                 newBox.textContent = "O";
-                newBox.id = num;
+                newBox.id = "O";
                 newBox.setAttribute("data-set", dataVal);
                 grid.appendChild(newBox);
 
@@ -216,9 +216,9 @@ function showSecondWinner() {
     playerList = [];
 }
 
-const displayController = (() => {
+const displayController = () => {
     let getPlayer1 = document.querySelector(".btn1");
-    getPlayer1.addEventListener("click", () => {
+    getPlayer1.addEventListener("click", handler1 = () => {
         let player1 = window.prompt("enter player 1");
         playerList.splice(0, 0, player1);
         while (endGame == 1) {
@@ -227,7 +227,7 @@ const displayController = (() => {
         }
     })
     let getPlayer2 = document.querySelector(".btn2");
-    getPlayer2.addEventListener("click", () => {
+    getPlayer2.addEventListener("click", handler2 = () => {
         let player2 = window.prompt("enter player 2");
         playerList.splice(1, 0, player2);
         while (endGame == 2) {
@@ -235,7 +235,11 @@ const displayController = (() => {
             endGame = 0;
         }
     })
-})();
+}
+
+
+    displayController();
+
 
 function restartGame() {
     let box = document.querySelector(".platform");
@@ -246,6 +250,12 @@ function restartGame() {
     restartBtn.classList.add("restartBtn");
     restartBtn.textContent = "Restart";
     restart.appendChild(restartBtn);
+
+    let getPlayer1 = document.querySelector(".btn1");
+    getPlayer1.removeEventListener("click", handler1);
+
+    let getPlayer2 = document.querySelector(".btn2");
+    getPlayer2.removeEventListener("click", handler2);
 
      restartBtn.addEventListener("click", () => {
          boxCount = [];
@@ -264,5 +274,7 @@ function restartGame() {
         }
 
         gameBoard.publicCount();
+
+        displayController();
      })
 }
