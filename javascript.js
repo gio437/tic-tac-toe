@@ -50,7 +50,7 @@ function markXSpot(e) {
                 markOSpot();
 
                 for (let i = 0; i < eraseBox.length; i++) {
-                    eraseBox[dataVal].remove();
+                    //eraseBox[dataVal].remove();
                 }
 
                 decideWinner();
@@ -81,7 +81,7 @@ function markXSpot(e) {
 function decideWinner(player1, player2) {
     if (boxCount[0] && boxCount[1] && boxCount[2] == "X") {
         console.log("player1 wins!");
-        players(firstPlayer);
+        players(player1);
         restartGame();
         xVal = 0;
         endGame = 1;
@@ -231,6 +231,7 @@ function restartGame() {
 
      restartBtn.addEventListener("click", () => {
          boxCount = [];
+         endGame = 0;
          box.addEventListener("click", markXSpot);
          let removeResult = document.querySelector("h2");
 
