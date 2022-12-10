@@ -258,6 +258,7 @@ function restartGame() {
          boxCount = [];
          endGame = 0;
          moveCount = 0;
+         xVal = 0;
          box.addEventListener("click", markXSpot);
          let removeResult = document.querySelector("h2");
          console.log(removeResult);
