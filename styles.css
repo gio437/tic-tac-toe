@@ -1,5 +1,9 @@
+html {
+    background: linear-gradient(110deg, #fdcd3b 60%, #ffed4b 60%);
+}
+
 body {
-    background-color: rgba(97, 155, 221, 0.855);
+    background: linear-gradient(110deg, #fdcd3b 60%, #ffed4b 60%);
     overflow: hidden; /* this will center the object */
     position: absolute;
     width: 100%;
