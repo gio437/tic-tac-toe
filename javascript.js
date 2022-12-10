@@ -1,6 +1,8 @@
 const gameBoard = (() => {
-    let gridCount = 9;
-    let boxTag = 0;
+    return {
+        publicCount: function() {
+            let gridCount = 9;
+            let boxTag = 0;
 
     const boxCreate = () => {
             let boxParent = document.querySelector(".platform");
@@ -9,9 +11,7 @@ const gameBoard = (() => {
             box.setAttribute("data-set", boxTag);
             boxTag++;
             boxParent.appendChild(box);
-        }
-    return {
-        publicCount: function() {
+    }
             for (let i = 0; i < gridCount; i++) {
                 boxCreate();
             }
@@ -25,10 +25,11 @@ gameBoard.publicCount();
 
 let boxCount = [];
 let xVal = 0;
+let moveCount = 0;
 
 function markXSpot(e) {
-    let num;
     let dataVal;
+    let num;
 
       if (e.target.classList.contains("box")) {
           num = (e.target.id);
@@ -36,7 +37,8 @@ function markXSpot(e) {
       }
 
       let boxEl = document.querySelectorAll(".box"); //don't change
-      let eraseBox = document.querySelectorAll(`.box[data-id="${dataVal}"]`);
+      let eraseBox = document.querySelector(`.box[data-set="${dataVal}"]`);
+      console.log(eraseBox);
             if (boxCount[dataVal] == "X" || boxCount[dataVal] == "O" || xVal == 1) {
                 console.log(boxCount);
                 markOSpot();
@@ -47,11 +49,17 @@ function markXSpot(e) {
                 boxCount[dataVal] = "X";
                 boxEl[dataVal].id = "X";
                 xVal = 1;
+                moveCount++;
                 markOSpot();
 
-                for (let i = 0; i < eraseBox.length; i++) {
-                    //eraseBox[dataVal].remove();
-                }
+                eraseBox.remove();
+                let grid = document.querySelector(".platform");
+                let newBox = document.createElement("button");
+                newBox.classList.add("box");
+                newBox.textContent = "X";
+                newBox.id = num;
+                newBox.setAttribute("data-set", dataVal);
+                grid.appendChild(newBox);
 
                 decideWinner();
             }
@@ -66,12 +74,17 @@ function markXSpot(e) {
                 boxCount[dataVal] = "O";
                 boxEl[dataVal].id = "O";
                 xVal = 0;
+                moveCount++;
                 console.log(boxCount);
 
-                let removeBox = document.querySelectorAll(".box");
-                for (let i = 0; i < removeBox.length; i++) {
-                    //removeBox[dataVal].remove();
-                }
+                eraseBox.remove();
+                let grid = document.querySelector(".platform");
+                let newBox = document.createElement("button");
+                newBox.classList.add("box");
+                newBox.textContent = "O";
+                newBox.id = num;
+                newBox.setAttribute("data-set", dataVal);
+                grid.appendChild(newBox);
 
                 decideWinner();
             }
@@ -79,7 +92,12 @@ function markXSpot(e) {
 }
 
 function decideWinner(player1, player2) {
-    if (boxCount[0] && boxCount[1] && boxCount[2] == "X") {
+    console.log(moveCount);
+
+    if (moveCount == 9) {
+        restartGame();
+    }
+    else if (boxCount[0] && boxCount[1] && boxCount[2] == "X") {
         console.log("player1 wins!");
         players(player1);
         restartGame();
@@ -232,11 +250,19 @@ function restartGame() {
      restartBtn.addEventListener("click", () => {
          boxCount = [];
          endGame = 0;
+         moveCount = 0;
          box.addEventListener("click", markXSpot);
          let removeResult = document.querySelector("h2");
 
          restartBtn.remove();
          removeResult.remove();
          //restartBtn.removeEventListener("click");
+
+         const grid = document.querySelectorAll(".box");
+         for (let i = 0; i < grid.length; i++) {
+            grid[i].remove();
+        }
+
+        gameBoard.publicCount();
      })
 }
