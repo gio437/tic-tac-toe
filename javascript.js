@@ -242,6 +242,14 @@ function restartGame() {
     let box = document.querySelector(".platform");
     box.removeEventListener("click", markXSpot);
 
+    if (moveCount == 9) {
+        let result = document.querySelector(".result");
+        let tie = document.createElement("h2");
+        tie.textContent = "Tie!";
+        tie.classList.add("tie");
+        result.appendChild(tie);
+    }
+
     let restart = document.querySelector(".restart");
     let restartBtn = document.createElement("button");
     restartBtn.classList.add("restartBtn");
@@ -255,6 +263,11 @@ function restartGame() {
     getPlayer2.removeEventListener("click", handler2);
 
      restartBtn.addEventListener("click", () => {
+        if (moveCount == 9) {
+            let tie = document.querySelector(".tie");
+            tie.remove();
+        }
+
          boxCount = [];
          endGame = 0;
          moveCount = 0;

@@ -36,8 +36,8 @@ body {
     font-size: 100px;
     border-style: solid;
     border-color: white;
-    height: 12rem;
-    width: 12rem;
+    height: 10rem;
+    width: 10rem;
 }
 
 .box:hover {
@@ -49,7 +49,7 @@ body {
     display: flex;
     justify-content: center;
     margin-top: 40px;
-    gap: 30px;
+    gap: 50px;
 }
 
 
