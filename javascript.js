@@ -213,7 +213,7 @@ function players() {
 };
 
 function showSecondWinner() {
-    let winnerLine = document.querySelector(".tie");
+    let winnerLine = document.querySelector(".result");
     let winHeader1 = document.createElement("h2");
     winHeader1.textContent = playerList[1] + " wins!";
     winnerLine.appendChild(winHeader1);
