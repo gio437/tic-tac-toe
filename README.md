@@ -1,3 +1,5 @@
 # tic-tac-toe
 
-Welcome to my Tic-Tac-Toe game! Start by opening up the file index.html, input the name of the first player with the button, than the next player, and get started! the first player will be assigned symbol X.
+Welcome to my Tic-Tac-Toe game! Input the name of the first player with the button, than the next player, and get started! the first player will be assigned symbol X.
+
+Check it out on GitHub Pages: https://gio437.github.io/tic-tac-toe/
