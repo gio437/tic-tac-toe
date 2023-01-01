@@ -265,10 +265,8 @@ function restartGame() {
     restartBtn.classList.add("restartBtn");
     restartBtn.textContent = "Restart";
     restart.appendChild(restartBtn);
-
     let getPlayer1 = document.querySelector(".btn1");
     getPlayer1.removeEventListener("click", handler1);
-
     let getPlayer2 = document.querySelector(".btn2");
     getPlayer2.removeEventListener("click", handler2);
 
@@ -285,15 +283,13 @@ function restartGame() {
          if (removeResult != null) {
                 removeResult.remove();
          }
-         //restartBtn.removeEventListener("click");
+         // restartBtn.removeEventListener("click");
 
          const grid = document.querySelectorAll(".box");
          for (let i = 0; i < grid.length; i++) {
             grid[i].remove();
         }
-
         gameBoard.publicCount();
-
         displayController();
      })
 }
