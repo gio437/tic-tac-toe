@@ -23,3 +23,5 @@ This Tic Tac Toe application was built using the following technologies:
 HTML
 CSS
 JavaScript
+
+Thanks for checking out my game!
