@@ -1,27 +1,33 @@
 const gameBoard = (() => {
     return {
-        publicCount: function() {
-            let gridCount = 9;
-            let boxTag = 0;
+            publicCount: function() {
+                let gridCount = 9;
+                let boxTag = 0;
 
-    const boxCreate = () => {
-            let boxParent = document.querySelector(".platform");
-            let box = document.createElement("button");
-            box.classList.add("box");
-            box.setAttribute("data-set", boxTag);
-            boxTag++;
-            boxParent.appendChild(box);
-    }
-            for (let i = 0; i < gridCount; i++) {
-                boxCreate();
-            }
-                let createMark = document.querySelector(".platform");
-                createMark.addEventListener("click", markXSpot); 
+                const boxCreate = () => {
+                    let boxParent = document.querySelector(".platform");
+                    let box = document.createElement("button");
+                    box.classList.add("box");
+                    box.setAttribute("data-set", boxTag);
+                    boxTag++;
+                    boxParent.appendChild(box);
+                }
+                for (let i = 0; i < gridCount; i++) {
+                    boxCreate();
+                }
+
             }
         }
 })();
 
 gameBoard.publicCount();
+
+const startGame = () => {
+    if (playerList[0] !== undefined && playerList[1] !== undefined) {
+        let createMark = document.querySelector(".platform");
+        createMark.addEventListener("click", markXSpot);
+    }
+}
 
 let boxCount = [];
 let xVal = 0;
@@ -36,7 +42,7 @@ function markXSpot(e) {
           dataVal = parseInt(e.target.getAttribute("data-set"));
       }
 
-      let boxEl = document.querySelectorAll(".box"); //don't change
+      let boxEl = document.querySelectorAll(".box");
       let eraseBox = document.querySelector(`.box[data-set="${dataVal}"]`);
       console.log(eraseBox);
             if (boxCount[dataVal] == "X" || boxCount[dataVal] == "O" || xVal == 1) {
@@ -44,7 +50,7 @@ function markXSpot(e) {
                 markOSpot();
                 return;
             }
-            else { 
+            else {
                 console.log("inputted X");
                 boxCount[dataVal] = "X";
                 boxEl[dataVal].id = "X";
@@ -234,6 +240,7 @@ const displayController = () => {
             players();
             endGame = 0;
         }
+        startGame();
     })
     let getPlayer2 = document.querySelector(".btn2");
     getPlayer2.addEventListener("click", handler2 = () => {
@@ -243,6 +250,7 @@ const displayController = () => {
             showSecondWinner();
             endGame = 0;
         }
+        startGame();
     })
 }
 
@@ -275,7 +283,6 @@ function restartGame() {
          endGame = 0;
          moveCount = 0;
          xVal = 0;
-         box.addEventListener("click", markXSpot);
          let removeResult = document.querySelector("h2");
          console.log(removeResult);
 
