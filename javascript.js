@@ -27,6 +27,9 @@ const startGame = () => {
         let createMark = document.querySelector(".platform");
         createMark.addEventListener("click", markXSpot);
     }
+    else {
+        createMark.removeEventListener("click", markXSpot);
+    }
 }
 
 let boxCount = [];
@@ -280,6 +283,7 @@ function restartGame() {
 
      restartBtn.addEventListener("click", () => {
          boxCount = [];
+         playerList = [];
          endGame = 0;
          moveCount = 0;
          xVal = 0;
